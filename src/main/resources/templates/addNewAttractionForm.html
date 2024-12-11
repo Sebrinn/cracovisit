@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html layout:decorate="layouts/defaultLayout" xmlns:th="https://www.thymeleaf.org">
+	
+	<body>
+		<div layout:fragment="content">
+			<div class="container mb-3 mt-3">
+				<form th:action="@{/attractions/addNew}" action="#" method="post" th:object="${attraction}">
+				  <div class="mb-3">
+				    <label for="AttractionNameInput" class="form-label">Nazwa atrakcji</label>
+				    <input th:field="*{attractionName}" type="text" class="form-control" id="AttractionNameInput" aria-describedby="AttractionNameHelp">
+				    <div id="AttractionNameHelp" class="form-text">Podaj nazwe atrakcji</div>
+				  </div>
+				  <div class="mb-3">
+				    <label for="AttractionescriptionInput" class="form-label">Opis atrakcji</label>
+				    <input th:field="*{attractionDescription}" type="text" class="form-control" id="AttractionescriptionInput" aria-describedby="AttractionescriptionHelp">
+				    <div id="AttractionescriptionHelp" class="form-text">Podaj opis atrakcji</div>
+				  </div>
+				  <div class="mb-3">
+				    <label for="AttractionEntryFeeInput" class="form-label">Cena</label>
+				    <input th:field="*{attractionEntryFee}" type="text" class="form-control" id="AttractionEntryFeeInput" aria-describedby="AttractionEntryFeeHelp">
+				    <div id="AttractionEntryFeeHelp" class="form-text">Podaj cenę atrakcji</div>
+				  </div>
+				  <div class="mb-3">
+				    <label for="AttractionLocationInput" class="form-label">Lokalizacja</label>
+				    <input th:field="*{attractionLocation}" type="text" class="form-control" id="AttractionLocationInput" aria-describedby="AttractionLocationHelp">
+				    <div id="AttractionLocationHelp" class="form-text">Podaj lokalizację atrakcji</div>
+				  </div>
+				  <div class="mb-3">
+				    <label for="AttractionTypeInput" class="form-label">Typ</label>
+				    <input th:field="*{attractionType}" type="text" class="form-control" id="AttractionTypeInput" aria-describedby="AttractionTypeHelp">
+				    <div id="AttractionTypeHelp" class="form-text">Podaj typ atrakcji</div>
+				  </div>
+				  <button type="submit" class="btn btn-primary">Dodaj</button>
+				</form>
+			</div>
+		</div>
+	</body>
+	
+</html>

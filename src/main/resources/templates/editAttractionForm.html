@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html layout:decorate="layouts/defaultLayout" xmlns:th="https://www.thymeleaf.org">
+	
+	<body>
+		<div layout:fragment="content">
+			<div class="container mb-3 mt-3">
+				<form th:action="@{/attractions/edit}" action="#" method="post" th:object="${attraction}">
+				<input th:field="*{attractionID}" type="hidden" class="form-control" id="AttractionIDInput">
+				  <div class="mb-3">
+				    <label for="AttractionNameInput" class="form-label">Nazwa atrakcji</label>
+				    <input th:field="*{attractionName}" type="text" class="form-control" id="AttractionNameInput" aria-describedby="AttractionNameHelp">
+				    <div id="AttractionNameHelp" class="form-text">Podaj nową nazwe atrakcji</div>
+				  </div>
+				  <div class="mb-3">
+				    <label for="AttractionDescriptionInput" class="form-label">Opis atrakcji</label>
+				    <input th:field="*{attractionDescription}" type="text" class="form-control" id="AttractionDescriptionInput" aria-describedby="AttractionDescriptionHelp">
+				    <div id="AttractionDescriptionHelp" class="form-text">Podaj nowy opis atrakcji</div>
+				  </div>
+				  <div class="mb-3">
+				    <label for="AttractionEntryFeeInput" class="form-label">Podaj cenę</label>
+				    <input th:field="*{attractionEntryFee}" type="text" class="form-control" id="AttractionEntryFeeInput" aria-describedby="AttractionEntryFeeHelp">
+				    <div id="AttractionEntryFeeHelp" class="form-text">Podaj nową cenę atrakcji</div>
+				  </div>
+				  <div class="mb-3">
+				    <label for="AttractionLocationInput" class="form-label">Podaj lokalizację</label>
+				    <input th:field="*{attractionLocation}" type="text" class="form-control" id="AttractionLocationInput" aria-describedby="AttractionLocationHelp">
+				    <div id="AttractionLocationHelp" class="form-text">Podaj nową lokalizację atrakcji</div>
+				  </div>
+				  <input th:field="*{attractionType}" type="hidden" class="form-control" id="AttractionTypeInput">
+				  <button type="submit" class="btn btn-primary">Edytuj</button>
+				</form>
+			</div>
+		</div>
+	</body>
+	
+</html>

@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+
+body {
+
+  background-image: url("/img/background.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  
+}
+
+  
+table
+{
+  background-color: rgba(255,255, 255, 0.2) !important;
+  backdrop-filter: blur(55px) !important;
+  border: 2px solid rgba(0, 0, 0, 0.5) !important;
+  border-radius: 20px !important;
+  padding: 2rem 3rem !important;
+}
+  
+tbody, tr, th, td
+{
+	background-color: rgba(255, 255, 255, 0.2) !important;
+}
+

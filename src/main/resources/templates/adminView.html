@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html layout:decorate="layouts/defaultLayout" xmlns:th="https://www.thymeleaf.org">
+	
+	<body>
+	
+		<div layout:fragment="content">
+		<div class="container-fluid">
+			<h2 th:text="${title}"></h2>
+			<table class="table table-hover table-responsive">
+				<thead>
+			    <tr>
+			      <th scope="col">ID</th>
+			      <th scope="col">Nazwa</th>
+			      <th scope="col">Opis</th>
+			      <th scope="col">Cena za wejście</th>
+				  <th scope="col">Lokalizacja</th>
+				  <th scope="col">Typ</th>
+				  <th scope="col">Usuń</th>
+				  <th scope="col">Edytuj</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr th:each="attraction : ${attractions}">
+			      <td th:text = "${attraction.attractionID}"></td>
+			      <td th:text = "${attraction.attractionName}"></td>
+			      <td th:text = "${attraction.attractionDescription}"></td>
+			      <td th:text = "${attraction.attractionEntryFee}"></td>
+				  <td th:text = "${attraction.attractionLocation}"></td>
+				  <td th:text = "${attraction.attractionType}"></td>
+				  <td>
+					<form action="#" th:action="@{/attractions/delete}" th:object="${attraction}" method="post">
+						<input name="attractionID", type="hidden" th:value="${attraction.attractionID}">
+						<input name="attractionName", type="hidden" th:value="${attraction.attractionName}">
+						<input name="attractionDescription", type="hidden" th:value="${attraction.attractionDescription}">
+						<input name="attractionEntryFee", type="hidden" th:value="${attraction.attractionEntryFee}">
+						<input name="attractionLocation", type="hidden" th:value="${attraction.attractionLocation}">
+						<input name="attractionType", type="hidden" th:value="${attraction.attractionType}">
+						<button class="btn btn-danger" type="submit" name="deleteItem">Usuń</button>
+					</form>
+				  </td>
+				  <td>
+				  <form action="#" th:action="@{/attractions/showEditAttractionForm}" th:object="${attraction}" method="post">
+					<input name="attractionID", type="hidden" th:value="${attraction.attractionID}">
+					<input name="attractionName", type="hidden" th:value="${attraction.attractionName}">
+					<input name="attractionDescription", type="hidden" th:value="${attraction.attractionDescription}">
+					<input name="attractionEntryFee", type="hidden" th:value="${attraction.attractionEntryFee}">
+					<input name="attractionLocation", type="hidden" th:value="${attraction.attractionLocation}">
+					<input name="attractionType", type="hidden" th:value="${attraction.attractionType}">
+				  	<button class="btn btn-secondary" type="submit" name="editItem">Edytuj</button>
+				  </form>
+				  </td>	
+			    </tr>
+			  </tbody>
+			</table>
+		</div>
+		</div>
+	</body>
+</html>
