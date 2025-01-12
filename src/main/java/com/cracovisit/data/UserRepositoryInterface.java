@@ -10,7 +10,7 @@ import com.cracovisit.models.UserEntity;
 
 public interface UserRepositoryInterface extends CrudRepository<UserEntity, Long> {
 
-	Optional<UserEntity> findByUserName(String userName);
+	Optional<UserEntity> findByUserEmail(String userEmail);
 	List<UserEntity> findByUserNameContainingIgnoreCase(String searchTerm);
 	
 }

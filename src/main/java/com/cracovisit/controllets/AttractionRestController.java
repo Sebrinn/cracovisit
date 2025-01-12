@@ -44,7 +44,7 @@ public class AttractionRestController {
 	}
 	
 	@PostMapping("/")
-	public long searchAttraction(@RequestBody AttractionModel e)
+	public long addAttraction(@RequestBody AttractionModel e)
 	{
 		return service.addAttraction(e);
 	}

@@ -31,10 +31,13 @@ public class AttractionEntity {
 	
 	@Column("attractionType")
 	String attractionType = "";
+	
+	@Column("attractionImagePath")
+	String attractionImagePath = "";
 
 	public AttractionEntity(String name, String category, float cordX, float cordY, Long attractionID,
 			String attractionName, String attractionDescription, float attractionEntryFee, int attractionLocation,
-			String attractionType) {
+			String attractionType, String attractionImagePath) {
 		super();
 		this.attractionID = attractionID;
 		this.attractionName = attractionName;
@@ -42,6 +45,7 @@ public class AttractionEntity {
 		this.attractionEntryFee = attractionEntryFee;
 		this.attractionLocation = attractionLocation;
 		this.attractionType = attractionType;
+		this.attractionImagePath = attractionImagePath;
 	}
 
 	public AttractionEntity() {
@@ -96,6 +100,16 @@ public class AttractionEntity {
 	public void setAttractionType(String attractionType) {
 		this.attractionType = attractionType;
 	}
+
+	public String getAttractionImagePath() {
+		return attractionImagePath;
+	}
+
+	public void setAttractionImagePath(String attractionImagePath) {
+		this.attractionImagePath = attractionImagePath;
+	}
+	
+	
 	
 	
 	

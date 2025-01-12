@@ -12,9 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cracovisit.SpringConfig;
 import com.cracovisit.models.AttractionModel;
 import com.cracovisit.models.SearchModel;
 import com.cracovisit.services.AttractionServiceInterface;
+import com.cracovisit.services.EventServiceInterface;
+import com.cracovisit.services.LocationServiceInterface;
+import com.cracovisit.services.MonumentServiceInterface;
 
 import jakarta.validation.Valid;
 
@@ -24,6 +28,15 @@ public class AttractionController {
 	
 	@Autowired
 	AttractionServiceInterface service;
+	
+	@Autowired
+	LocationServiceInterface locationService;
+	
+	@Autowired
+	MonumentServiceInterface monumentService;
+	
+	@Autowired
+	EventServiceInterface eventService;
 
 
 	@GetMapping
@@ -36,6 +49,26 @@ public class AttractionController {
         model.addAttribute("searchModel", new SearchModel());
 		
 		return "attractions.html";
+	}
+	
+	@PostMapping("/details")
+	public String showDetails(AttractionModel attraction, Model model)
+	{
+		model.addAttribute("attraction", attraction);
+		model.addAttribute("location", locationService.getByID(attraction.getAttractionLocation()));
+		model.addAttribute("searchModel", new SearchModel());
+		
+		if(attraction.getAttractionType().equals("monument"))
+		{
+			model.addAttribute("monument", monumentService.getByID(attraction.getAttractionID()));
+			return "attractionDetails.html";
+		}
+		else if(attraction.getAttractionType().equals("event"))
+		{
+			model.addAttribute("event", eventService.getByID(attraction.getAttractionID()));
+			return "attractionDetailsEvent.html";
+		}
+		return null;
 	}
 	
 	@GetMapping("/adminView")
@@ -62,6 +95,7 @@ public class AttractionController {
 	@PostMapping("/addNew")
 	public String addNew(@Valid AttractionModel newAttraction, BindingResult bindingResult, Model model)
 	{
+		
 		service.addAttraction(newAttraction);
 		
 		

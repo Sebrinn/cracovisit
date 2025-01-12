@@ -39,6 +39,11 @@ public class UserService implements UserServiceInterface {
 	@Override
 	public long addUser(UserModel e) {
 		
+		Optional<UserModel> user = userDao.getByUniqueValue(e.getUserEmail());
+		if(user.isPresent())
+		{
+			return -1;
+		}
 		return userDao.addNew(e);
 	}
 
@@ -67,19 +72,26 @@ public class UserService implements UserServiceInterface {
 	}
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<UserModel> user = userDao.getByUniqueValue(username);
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		Optional<UserModel> user = userDao.getByUniqueValue(email);
 		if(user.isPresent())
 		{
 			var userObj = user.get();
 			return User.builder()
-					.username(userObj.getUserName())
+					.username(userObj.getUserEmail())
 					.password(userObj.getUserPassword())
 					.build();
 		}
 		else {
-			throw new UsernameNotFoundException(username);
+			throw new UsernameNotFoundException(email);
 		}
+	}
+
+
+	@Override
+	public Optional<UserModel> getUserByEmail(String email) {
+
+		return userDao.getByUniqueValue(email);
 	}
 
 }

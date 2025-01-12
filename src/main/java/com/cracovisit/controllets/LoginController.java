@@ -22,10 +22,6 @@ public class LoginController {
 		return "loginForm.html";
 	}
 	
-	@GetMapping("/req/signup")
-	public String displaySignupForm(Model model)
-	{
-		return "signup.html";
-	}
+
 
 }

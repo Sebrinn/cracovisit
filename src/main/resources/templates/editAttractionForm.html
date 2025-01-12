@@ -3,7 +3,7 @@
 	
 	<body>
 		<div layout:fragment="content">
-			<div class="container mb-3 mt-3">
+			<div class="container mt-3 mb-3 bg-light pt-5 pb-5 ps-5 pe-5" style="border: 5px solid black;">
 				<form th:action="@{/attractions/edit}" action="#" method="post" th:object="${attraction}">
 				<input th:field="*{attractionID}" type="hidden" class="form-control" id="AttractionIDInput">
 				  <div class="mb-3">

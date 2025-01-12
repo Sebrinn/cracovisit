@@ -3,7 +3,14 @@
 	
 	<body>
 		<div layout:fragment="content">
-			<div class="container mb-3 mt-3">
+			<div class="container mt-5 mb-5">
+				<script>
+				    var link = document.createElement('link');
+				    link.rel = 'stylesheet';
+				    link.href = '/css/formStyle.css';
+				    document.head.appendChild(link);
+				</script>
+				<section class="attractionForm">
 				<form th:action="@{/attractions/addNew}" action="#" method="post" th:object="${attraction}">
 				  <div class="mb-3">
 				    <label for="AttractionNameInput" class="form-label">Nazwa atrakcji</label>
@@ -32,6 +39,7 @@
 				  </div>
 				  <button type="submit" class="btn btn-primary">Dodaj</button>
 				</form>
+				</section>
 			</div>
 		</div>
 	</body>

@@ -8,9 +8,10 @@ public class AttractionModel {
 	float attractionEntryFee = 0;
 	int attractionLocation = 0;
 	String attractionType = "";
+	String attractionImagePath = "";
 	
 	public AttractionModel(Long attractionID, String attractionName, String attractionDescription,
-			float attractionEntryFee, int attractionLocation, String attractionType) {
+			float attractionEntryFee, int attractionLocation, String attractionType, String attractionImagePath) {
 		super();
 		this.attractionID = attractionID;
 		this.attractionName = attractionName;
@@ -18,6 +19,7 @@ public class AttractionModel {
 		this.attractionEntryFee = attractionEntryFee;
 		this.attractionLocation = attractionLocation;
 		this.attractionType = attractionType;
+		this.attractionImagePath = attractionImagePath;
 	}
 
 	public AttractionModel() {
@@ -70,6 +72,17 @@ public class AttractionModel {
 
 	public void setAttractionType(String attractionType) {
 		this.attractionType = attractionType;
+	}
+
+	
+	
+	
+	public String getAttractionImagePath() {
+		return attractionImagePath;
+	}
+
+	public void setAttractionImagePath(String attractionImagePath) {
+		this.attractionImagePath = attractionImagePath;
 	}
 
 	@Override

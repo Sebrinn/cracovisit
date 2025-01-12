@@ -8,7 +8,7 @@ public interface DataAccessInterface <T, A>{
 	
 	public T getByID(long id);
 	public List<T> getAll();
-	public List<T> search(String searchTerm);
+	public List<T> search(A searchTerm);
 	public long addNew(T e);
 	public boolean deleteByID(long id);
 	public T updateByID(T e, long id);

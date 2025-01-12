@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html layout:decorate="layouts/defaultLayout" xmlns:th="https://www.thymeleaf.org">
+
+	
+<body>
+	
+  <div layout:fragment="content">
+	<div class="container mt-3 mb-3 bg-light pt-5 pb-5 ps-5 pe-5" style="border: 5px solid black;">
+	   <!-- Sekcja Szczegółów -->
+	   <div class="card mb-4">
+	     <div class="card-header bg-primary text-white">
+	       <h2 class="h5 mb-0" th:text="${attraction.attractionName}">Informacje o Zabyku</h2>
+	     </div>
+	     <div class="card-body">
+	       <ul class="list-group list-group-flush">
+	         <li class="list-group-item"><strong>Historia:</strong> <span th:text="${monument.history}">Historia</span></li>
+	         <li class="list-group-item"><strong>Epoka:</strong> <span th:text="${monument.epoch}">Epoka</span></li>
+	         <li class="list-group-item"><strong>Styl:</strong> <span th:text="${monument.architecturalStyle}">Styl</span> </li>
+	       </ul>
+	     </div>
+	   </div>
+
+	   <!-- Godziny otwarcia -->
+	   <div class="card mb-4">
+	     <div class="card-header bg-success text-white">
+	       <h2 class="h5 mb-0">Godziny Otwarcia</h2>
+	     </div>
+	     <div class="card-body">
+	       <p th:text="${monument.openingTime} + ' - ' + ${monument.closingTime}">Godziny otwarcia</p>
+	       <p class="text-muted mt-2">* Godziny mogą się różnić w zależności od sezonu.</p>
+	     </div>
+	   </div>
+
+	   <!-- Cennik -->
+	   <div class="card mb-4">
+	     <div class="card-header bg-info text-white">
+	       <h2 class="h5 mb-0">Cennik</h2>
+	     </div>
+	     <div class="card-body">
+	       <p th:text="'Normalny: ' + ${attraction.attractionEntryFee} + ' zł'">Ceny biletów</p>
+	       <p class="text-muted mt-2">* Wstęp darmowy w każdą niedzielę.</p>
+	     </div>
+	   </div>
+	   
+
+	   <div id="googleMap" style="width:100%;height:400px;"></div>
+
+	   <script th:inline="javascript">
+	   function myMap() {
+	   let cordX = /*[[${location.cordX}]]*/
+	   let cordY = /*[[${location.cordY}]]*/
+	   const myLatLng = { lat: cordY, lng: cordX };
+	   var mapProp= {
+	     center:new google.maps.LatLng(cordY,cordX),
+	     zoom:17,
+	   };
+	   var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+	   var marker = new google.maps.Marker({
+	     position:myLatLng,
+	     animation:google.maps.Animation.BOUNCE
+	   });
+
+	   marker.setMap(map); 
+	   }
+	   </script>
+
+	   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeBbDF1DFAnCQUsIwUb_2cg0pvVcyeCP8&callback=myMap"></script>
+
+	   <!-- Przyciski akcji -->
+	   <div class="text-center mt-4">
+	     <a href="/attractions" class="btn btn-primary me-2 mb-2" style="width: 100%;">Powrót do Strony Głównej</a>
+		 <form action="#" th:action="@{/feedbacks}" th:object="${attraction}" method="post" style="display: flex;">
+		 	<input name="attractionID", type="hidden" th:value="${attraction.attractionID}">
+		 	<input name="attractionName", type="hidden" th:value="${attraction.attractionName}">
+		 	<input name="attractionDescription", type="hidden" th:value="${attraction.attractionDescription}">
+		 	<input name="attractionEntryFee", type="hidden" th:value="${attraction.attractionEntryFee}">
+		 	<input name="attractionLocation", type="hidden" th:value="${attraction.attractionLocation}">
+		 	<input name="attractionType", type="hidden" th:value="${attraction.attractionType}">
+		 	<input name="attractionImagePath", type="hidden" th:value="${attraction.attractionImagePath}">
+		 	<button class="btn btn-danger" type="submit" name="deleteItem" style="width: 100%;">Opinie</button>
+		 </form>
+	   </div>
+	 </div>
+  </div>
+</body>
+</html>

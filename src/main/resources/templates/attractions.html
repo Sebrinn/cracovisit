@@ -2,26 +2,35 @@
 <html layout:decorate="layouts/defaultLayout" xmlns:th="https://www.thymeleaf.org">
 	
 	<body>
-	
+>
 		<div layout:fragment="content">
 		<div class="container-fluid">
 			<table class="table table-hover table-responsive mt-3" style="background-color: transparent;">
 				<thead>
 			    <tr>
+				  <th scope="col">Zdjęcie</th>
 			      <th scope="col">Nazwa</th>
 			      <th scope="col">Opis</th>
-			      <th scope="col">Cena</th>
-			      <th scope="col">Lokacja</th>
-				  <th scope="col">Kategoria</th>
+				  <th scope="col"></th>
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <tr th:each="attraction : ${attractions}">
+			   <tr th:each="attraction : ${attractions}">
+				  <td><img th:src="${attraction.attractionImagePath}" width=" 100px" height="100px"/></td>
 			      <td th:text = "${attraction.attractionName}"></td>
 			      <td th:text = "${attraction.attractionDescription}"></td>
-			      <td th:text = "${attraction.attractionEntryFee} + ' zł'"></td>
-			      <td th:text = "${attraction.attractionLocation}"></td>
-				  <td th:text = "${attraction.attractionType}"></td>
+				  <td>
+				  <form action="#" th:action="@{/attractions/details}" th:object="${attraction}" method="post">
+				  	<input name="attractionID", type="hidden" th:value="${attraction.attractionID}">
+				  	<input name="attractionName", type="hidden" th:value="${attraction.attractionName}">
+				  	<input name="attractionDescription", type="hidden" th:value="${attraction.attractionDescription}">
+				  	<input name="attractionEntryFee", type="hidden" th:value="${attraction.attractionEntryFee}">
+				  	<input name="attractionLocation", type="hidden" th:value="${attraction.attractionLocation}">
+				  	<input name="attractionType", type="hidden" th:value="${attraction.attractionType}">
+					<input name="attractionImagePath", type="hidden" th:value="${attraction.attractionImagePath}">
+				  	<button class="btn btn-danger" type="submit" name="deleteItem">Szczegóły</button>
+				  </form>
+				  </td>
 			    </tr>
 			  </tbody>
 			</table>

@@ -31,9 +31,9 @@ public class UserDAO implements DataAccessInterface<UserModel, String>{
 	}
 	
 	@Override
-	public Optional<UserModel> getByUniqueValue(String username)
+	public Optional<UserModel> getByUniqueValue(String email)
 	{
-		UserEntity entity = repository.findByUserName(username).orElse(null);
+		UserEntity entity = repository.findByUserEmail(email).orElse(null);
 		
 		UserModel model = mapper.map(entity, UserModel.class);
 		
